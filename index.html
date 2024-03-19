@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Contrast</title>
+     <link rel="icon" type="image/x-icon" href="./favicon/favicon-32x32.png">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav class="navigator">
+      <div>Made by AlexBR784</div>
+      <a href="https://github.com/AlexBR784" target="_blank">
+        <i class="fa-brands fa-github fa-2xl"></i
+      ></a>
+    </nav>
+    <div class="configuration">
+      <div class="points">
+        <p id="indexC">--</p>
+      </div>
+      <div class="config-container">
+        <div class="colors-container">
+          <label for="color1">Color Primario</label>
+          <input type="color" name="color1" id="color1" />
+          <label for="color2">Color Texto</label>
+          <input type="color" name="color2" id="color2" />
+        </div>
+        <div>
+          <p>✏️ Escribe aquí!</p>
+          <textarea id="editor"></textarea>
+        </div>
+      </div>
+    </div>
+    <details>
+	<summary><i class="fa-solid fa-circle-info"></i> <p>Como funciona el indice de contraste</p> </summary>
+	<div>
+		<p>El "contrast ratio" (índice de contraste) es una medida que indica cuánto contraste existe entre dos colores.</p>
+        <p>Para cumplir con las pautas de accesibilidad del W3C (WCAG 2.0), el índice de contraste mínimo recomendado para texto normal es de 4.5:1. Para texto grande y elementos no textuales, el mínimo recomendado es de 3:1 .</p>
+
+        <h3>Por aclarar...</h3>
+        <ul>
+            <li>Un contraste de 1:1 significa que no hay contraste (luminancias iguales).</li>
+            <li>Un contraste mayor que 1:1 indica que hay contraste, y cuanto mayor sea el número, mayor será el contraste.</li>
+            <li>Un contraste de 21:1 significa un contraste extremadamente alto.</li>
+        </ul>
+    </details>
+    <div class="examples"><div id="example1" class="example1"></div></div>
+    <script type="module" src="main.js"></script>
+    <script type="module" src="contrastCalculator.js"></script>
+  </body>
+</html>
+
+<style>
+  /* poppins-latin-400-normal */
+  @font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-400-normal.woff2)
+        format("woff2"),
+      url(https://cdn.jsdelivr.net/fontsource/fonts/poppins@latest/latin-400-normal.woff)
+        format("woff");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122,
+      U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  html {
+    background-color: #e9eaec;
+  }
+  body {
+    width: 100%;
+    font-family: "Poppins";
+    margin: 0;
+  }
+
+  a:visited {
+    color: inherit;
+  }
+  .navigator {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em;
+  }
+
+  nav i{
+    transition: all 0.2s ease;
+  }
+
+  nav i:hover{
+    color: rgb(120, 120, 120);
+    font-size: 2.5rem;
+  }
+
+  .configuration {
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+    margin: 10em;
+    align-items: center;
+    height: 25vh;
+    padding: 0 10%;
+    position: relative;
+    background-color: #f3f4f6;
+    box-shadow: -20px 16px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  .config-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  textarea {
+    width: 300px;
+    height: 100px;
+    resize: none;
+    font-family: "Poppins";
+    border: none;
+  }
+
+  .colors-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #color1 {
+    margin-bottom: 2rem;
+  }
+
+  .points {
+    position: absolute;
+    color: white;
+    background-color: #1e1e27;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: -55px;
+    left: calc(50% - 50px);
+    box-shadow: -20px 16px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all ease 0.2s;
+  }
+
+  .points:hover {
+    background-color: #ffe2bf;
+    color: black;
+  }
+
+  .points p {
+    font-size: 2.1rem;
+  }
+
+  .examples {
+    margin: 5em;
+  }
+
+  .example1 {
+    padding: 20px;
+    height: 100px;
+  }
+
+  details{
+    position: fixed;
+	right: 1rem;
+	bottom: 1rem;
+	margin-top: 2rem;
+	color: #6b7280;
+	display: flex;
+	flex-direction: column;
+  }
+
+  details div{
+    background-color: #1e1e27;
+    box-shadow: 0 5px 10px rgba(#000, 0.15);
+    padding: 1.25rem;
+    border-radius: 8px;
+    position: absolute;
+    max-height: calc(100vh - 100px);
+    width: 400px;
+    max-width: calc(100vw - 2rem);
+    bottom: calc(100% + 1rem);
+    right: 0;
+    overflow: auto;
+    transform-origin: 100% 100%;
+    color: #95a3b9;
+  }
+
+  details summary{
+    display: inline-flex;
+	margin-left: auto;
+	margin-right: auto;
+	justify-content: center;
+	align-items: center;
+	font-weight: 600;
+	padding: 0.75em 3em .75em 1.25em;
+	border-radius: 99em;
+	color: #fff;
+	background-color: #1e1e27;
+	box-shadow: 0 5px 15px rgba(#000, 0.1);
+	list-style: none;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+  }
+
+  details summary i {
+    position: absolute;
+    right: 1.25em;
+    top: 50%; 
+    transform: translateY(-50%);
+
+  }
+</style>
